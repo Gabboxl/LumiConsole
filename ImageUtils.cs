@@ -45,9 +45,12 @@ namespace LumiConsole
                     double b = Linearize(pixel.B / 255.0);
                     double g = Linearize(pixel.G / 255.0);
                     double r = Linearize(pixel.R / 255.0);
-                    b = GammaCorrect(Math.Min(1, b * adjustFactor));
-                    g = GammaCorrect(Math.Min(1, g * adjustFactor));
-                    r = GammaCorrect(Math.Min(1, r * adjustFactor));
+                    b = b * adjustFactor;
+                    g = g * adjustFactor;
+                    r = r * adjustFactor;
+                    b = Math.Min(1, GammaCorrect(b));
+                    g = Math.Min(1, GammaCorrect(g));
+                    r = Math.Min(1, GammaCorrect(r));
                     bitmap.SetPixel(x, y, Color.FromArgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255)));
                 }
             }
